@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FirstCoreWebApplication
+namespace WebAPI
 {
     public class Program
     {
@@ -20,7 +20,6 @@ namespace FirstCoreWebApplication
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-
                     webBuilder.UseStartup<Startup>();
                 });
     }
