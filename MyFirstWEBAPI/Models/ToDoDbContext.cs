@@ -1,19 +1,30 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using System;
+using System.IO;
 
 namespace MyFirstWEBAPI.Models
 {
     public class ToDoDbContext : DbContext
     {
+        private IConfigurationRoot configuration;
         public ToDoDbContext(DbContextOptions<ToDoDbContext> options) : base(options) { }
 
         public DbSet<ToDo> ToDos { get; set; }
         public DbSet<User> Users { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder
-  optionsBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            configuration = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetParent(AppContext.BaseDirectory).FullName)
+                    .AddJsonFile("appsettings.json", false)
+                    .Build();
+            string connectionString = configuration.GetConnectionString("ToDosConnection");
+            if (connectionString != null)
+            {
+                optionsBuilder.UseSqlServer(connectionString);
+            }
 
-  
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
