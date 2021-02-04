@@ -1,14 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using MyFirstWEBAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace MyFirstWEBAPI
 {
@@ -24,6 +20,8 @@ namespace MyFirstWEBAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ToDoDbContext>(builder =>
+                    builder.UseInMemoryDatabase("ToDosDatabase"));
             services.AddControllers();
         }
 
@@ -33,6 +31,7 @@ namespace MyFirstWEBAPI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                
             }
             app.UseDefaultFiles();
             app.UseStaticFiles();
@@ -45,5 +44,8 @@ namespace MyFirstWEBAPI
                 endpoints.MapControllers();
             });
         }
+
+       
     }
+
 }
