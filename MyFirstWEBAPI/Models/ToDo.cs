@@ -18,5 +18,9 @@ namespace MyFirstWEBAPI.Models
         public string Omschrijving { get; set; }
         public PrioriteitsNiveau Prioriteit { get; set; }
         public bool IsGedaan { get; set; }
+
+        public int UserId { get; set; }
+        public User User { get; set; }
+
     }
 }
