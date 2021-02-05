@@ -35,5 +35,24 @@ namespace MyFirstMVCWebApp.Controllers
             }
             return View(brouwer);
         }
+
+        //standaard [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost] // Als de eindgebruiker op de Create button (submit) klikt in de browser-pagina
+        public IActionResult Create(Brouwers brouwer)
+        {
+            if (brouwer == null)
+            {
+                return BadRequest();
+            }
+            _context.Brouwers.Add(brouwer);
+            _context.SaveChanges();
+
+           return View(brouwer);
+
+        }
     }
 }
