@@ -54,5 +54,38 @@ namespace MyFirstMVCWebApp.Controllers
            return View(brouwer);
 
         }
+
+        //[HttpGet]
+        public IActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound(); //Error 404 -- Not found
+            }
+            Brouwers brouwer = _context.Brouwers.Find(id);//Find gaat automatisch op PK waarde zoeken
+            if (brouwer == null)
+            {
+                return NotFound(); //Error 404 -- Not found
+            }
+            return View(brouwer);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int? id, Brouwers brouwer)
+        {
+            if (id != brouwer.BrouwerNr)
+            {
+                return BadRequest();
+            }
+            bool bestaatBrouwer = _context.Brouwers.Any(b => b.BrouwerNr == id);
+            if (!bestaatBrouwer)
+            {
+                return NotFound();
+            }
+            _context.Brouwers.Update(brouwer);
+            _context.SaveChanges();
+
+            return View(brouwer);           
+        }
     }
 }
