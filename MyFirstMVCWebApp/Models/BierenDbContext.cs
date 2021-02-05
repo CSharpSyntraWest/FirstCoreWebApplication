@@ -1,6 +1,8 @@
 ﻿using System;
+using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
 
 // Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
 // If you have enabled NRTs for your project, then un-comment the following line:
@@ -10,6 +12,7 @@ namespace MyFirstMVCWebApp.Models
 {
     public partial class BierenDbContext : DbContext
     {
+        private static IConfigurationRoot configuration;
         public BierenDbContext()
         {
         }
@@ -26,10 +29,19 @@ namespace MyFirstMVCWebApp.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
+            //            if (!optionsBuilder.IsConfigured)
+            //            {
+            //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+            //                optionsBuilder.UseSqlServer("....");
+            //            }
+            configuration = new ConfigurationBuilder()
+                                .SetBasePath(Directory.GetParent(AppContext.BaseDirectory).FullName)
+                                .AddJsonFile("appsettings.json", false)
+                                .Build();
+            string connectionString = configuration.GetConnectionString("BierenDbConnection");
+            if (connectionString != null)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=BierenDb;Integrated Security=True");
+                optionsBuilder.UseSqlServer(connectionString);
             }
         }
 
