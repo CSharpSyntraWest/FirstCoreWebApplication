@@ -15,10 +15,25 @@ namespace MyFirstMVCWebApp.Controllers
         {
             _context = context;
         }
+       //standaard [HttpGet]
         public IActionResult Index()
         {
             List<Brouwers> brouwers = _context.Brouwers.ToList();
             return View(brouwers);
+        }
+        //standaard [HttpGet]
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound(); //404 - Not found status teruggeven
+            }
+            Brouwers brouwer = _context.Brouwers.Where(b => b.BrouwerNr == id).SingleOrDefault();
+            if (brouwer == null)
+            {
+                return NotFound(); //404 - Not found status teruggeven
+            }
+            return View(brouwer);
         }
     }
 }
