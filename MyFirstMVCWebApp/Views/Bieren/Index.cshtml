@@ -1,0 +1,53 @@
+﻿@model IEnumerable<MyFirstMVCWebApp.Models.Bieren>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Naam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Alcohol)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BrouwerNrNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoortNrNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Naam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Alcohol)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BrouwerNrNavigation.BrouwerNr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoortNrNavigation.SoortNr)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.BierNr">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.BierNr">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.BierNr">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

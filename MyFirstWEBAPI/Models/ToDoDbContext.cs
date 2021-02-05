@@ -38,10 +38,10 @@ namespace MyFirstWEBAPI.Models
                 toDo.HasKey(s => s.Id);
                 toDo.Property(s => s.Titel).IsRequired().HasMaxLength(50);
                 toDo.Property(s => s.Omschrijving).IsRequired().HasMaxLength(255);
-                
-                toDo.HasOne(t => t.User)
-                        .WithMany(u => u.ToDos)
-                        .HasForeignKey(t => t.UserId);
+
+                //toDo.HasOne(t => t.User)
+                //        .WithMany(u => u.ToDos)
+                //        .HasForeignKey(t => t.UserId);
             });
 
             modelBuilder.Entity<User>(user =>
@@ -50,10 +50,10 @@ namespace MyFirstWEBAPI.Models
                 user.HasKey(u => u.Id);
                 user.Property(u => u.VoorNaam).IsRequired().HasMaxLength(20); //wordt dan nvarchar(20)
                 user.Property(u => u.FamilieNaam).IsRequired().HasMaxLength(20);
-
-                user.HasMany(u => u.ToDos)
-                        .WithOne(u => u.User)
-                        .HasForeignKey(t => t.UserId);
+                user.HasMany(u => u.ToDos);
+                //user.HasMany(u => u.ToDos)
+                //        .WithOne(u => u.User)
+                //        .HasForeignKey(t => t.UserId);
 
             });
             base.OnModelCreating(modelBuilder);

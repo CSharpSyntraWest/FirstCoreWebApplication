@@ -30,7 +30,7 @@ namespace MyFirstWEBAPI.Controllers
         [HttpGet("{id}")]
         public ActionResult<ToDo> GetToDo(int id)
         {
-            ToDo toDo = _context.ToDos.Find(id);// _context.ToDos.Where(t => t.Id == id).FirstOrDefault();
+            ToDo toDo = _context.ToDos.Where(t => t.Id == id).FirstOrDefault();
             if (toDo == null)
             {
                 return NotFound();//Om status code 404 Not found terug te geven

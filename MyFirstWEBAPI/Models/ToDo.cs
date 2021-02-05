@@ -20,7 +20,7 @@ namespace MyFirstWEBAPI.Models
         public bool IsGedaan { get; set; }
 
         public int UserId { get; set; }
-        public User User { get; set; }
+      //  public User User { get; set; }
 
     }
 }

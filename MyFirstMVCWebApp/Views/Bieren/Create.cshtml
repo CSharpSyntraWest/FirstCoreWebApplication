@@ -1,0 +1,51 @@
+﻿@model MyFirstMVCWebApp.Models.Bieren
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Bieren</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="BierNr" class="control-label"></label>
+                <input asp-for="BierNr" class="form-control" />
+                <span asp-validation-for="BierNr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Naam" class="control-label"></label>
+                <input asp-for="Naam" class="form-control" />
+                <span asp-validation-for="Naam" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BrouwerNr" class="control-label"></label>
+                <select asp-for="BrouwerNr" class ="form-control" asp-items="ViewBag.BrouwerNr"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="SoortNr" class="control-label"></label>
+                <select asp-for="SoortNr" class ="form-control" asp-items="ViewBag.SoortNr"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Alcohol" class="control-label"></label>
+                <input asp-for="Alcohol" class="form-control" />
+                <span asp-validation-for="Alcohol" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

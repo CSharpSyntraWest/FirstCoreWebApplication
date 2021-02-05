@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MyFirstWEBAPI.Models;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace MyFirstWEBAPI.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<User>> GetUser()
         {
-            return Ok(_context.Users.ToList()); //OK = 200 status code 
+            return Ok(_context.Users.Include(u => u.ToDos).ToList()); //OK = 200 status code 
         }
         //GET api/user/1 (de gegevens van één user opvragen via Id)
         [HttpGet("{id}")]

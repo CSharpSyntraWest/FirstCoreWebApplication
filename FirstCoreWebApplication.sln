@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FirstCoreWebApplication", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyFirstWEBAPI", "MyFirstWEBAPI\MyFirstWEBAPI.csproj", "{A8417F3A-BFF5-4FC8-8954-AEE45B879516}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFirstMVCWebApp", "MyFirstMVCWebApp\MyFirstMVCWebApp.csproj", "{D223C5FB-89BF-4B72-B0C0-BBF4D05DF731}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A8417F3A-BFF5-4FC8-8954-AEE45B879516}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8417F3A-BFF5-4FC8-8954-AEE45B879516}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8417F3A-BFF5-4FC8-8954-AEE45B879516}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D223C5FB-89BF-4B72-B0C0-BBF4D05DF731}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D223C5FB-89BF-4B72-B0C0-BBF4D05DF731}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D223C5FB-89BF-4B72-B0C0-BBF4D05DF731}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D223C5FB-89BF-4B72-B0C0-BBF4D05DF731}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
